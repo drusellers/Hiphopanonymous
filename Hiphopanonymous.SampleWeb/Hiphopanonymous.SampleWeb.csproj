@@ -97,11 +97,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
-    <Compile Include="EventInvocationSource.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestStateMachineInstanceRepository.cs" />
-    <Compile Include="TicketStateMachine.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -1,8 +1,8 @@
-using Automatonymous;
-using FubuMVC.Core;
-
-namespace Hiphop
+namespace Hiphopanonymous
 {
+    using Automatonymous;
+    using FubuMVC.Core;
+
     public class StateMachineCurrentStateAction<TStateMachine> where TStateMachine : StateMachine, new()
     {
         private StateMachineInstanceRepository _repository;

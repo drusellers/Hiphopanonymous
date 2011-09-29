@@ -1,8 +1,8 @@
-using System;
-using Automatonymous;
-
-namespace Hiphop
+namespace Hiphopanonymous
 {
+    using System;
+    using Automatonymous;
+
     public class StateMachineRaiseEventAction<TStateMachine, TEvent>
         where TStateMachine : StateMachine, new()
         where TEvent : Event

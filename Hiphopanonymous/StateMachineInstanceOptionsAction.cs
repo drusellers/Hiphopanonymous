@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using FubuMVC.Core;
-using Automatonymous;
-
-namespace Hiphop
+namespace Hiphopanonymous
 {
+    using System.Collections.Generic;
+    using FubuMVC.Core;
+    using Automatonymous;
+
     public class StateMachineInstanceOptionsAction<TStateMachine> where TStateMachine : StateMachine, new()
     {
         [JsonEndpoint]

@@ -8,6 +8,8 @@ using System.Linq;
 
 namespace Hiphop
 {
+    using Hiphopanonymous;
+
     public class StateMachineOptionsAction<TStateMachine> 
         where TStateMachine : StateMachine, new()
     {
