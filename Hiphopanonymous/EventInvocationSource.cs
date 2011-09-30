@@ -27,12 +27,8 @@
     {
         public IEnumerable<ActionCall> FindActions(TypePool types)
         {
-            IEnumerable<Type> foundStateMachineTypes = new List<Type>()
-                                                       {
-                                                           typeof(TicketStateMachine)
-                                                       };
-
-            foreach(var sm in foundStateMachineTypes)
+            
+            foreach(var sm in types.TypesMatching(t=> t.Closes(typeof(StateMachine<>))))
             {
                 //TODO: Where can I load things into the container - using ObjDef?
                 var machine = (StateMachine)Activator.CreateInstance(sm);
@@ -40,7 +36,10 @@
                 
 
                 var t = typeof (StateMachineOptionsAction<>).MakeGenericType(sm);
-                yield return new ActionCall(t, t.GetMethod("Execute", BindingFlags.Public | BindingFlags.Instance));
+                var ta =  new ActionCall(t, t.GetMethod("Execute", BindingFlags.Public | BindingFlags.Instance));
+                //can I build the route here?
+                
+                yield return ta;
 
                 var tt = typeof(StateMachineInstanceOptionsAction<>).MakeGenericType(sm);
                 yield return new ActionCall(tt, tt.GetMethod("Execute", BindingFlags.Public | BindingFlags.Instance));
@@ -91,13 +90,12 @@
                 route.ConstrainToHttpMethods("GET");
                 route.Append("{id}");
             }
-
-            //add id to  those that need it
             
             //add event name
             if(call.HandlerType.Closes(typeof(StateMachineRaiseEventAction<,>)))
             {
-                //this is a fail
+                //this is a fail, this is the type name - not the name of the event which would be the name
+                //of the property the type was derived from.
                 var eventName = call.HandlerType.GetGenericArguments()[1].Name.ToLower();
                 route.Append("{id}");
                 route.Append(eventName);
