@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using Automatonymous;
@@ -6,10 +5,8 @@ using FubuMVC.Core;
 using FubuMVC.Core.Urls;
 using System.Linq;
 
-namespace Hiphop
+namespace Hiphopanonymous
 {
-    using Hiphopanonymous;
-
     public class StateMachineOptionsAction<TStateMachine> 
         where TStateMachine : StateMachine, new()
     {

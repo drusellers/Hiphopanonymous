@@ -1,6 +1,5 @@
 using System;
 using Automatonymous;
-using Hiphop;
 
 namespace Hiphopanonymous.SampleWeb
 {

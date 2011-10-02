@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
+    <Compile Include="EventActionCall.cs" />
     <Compile Include="EventInvocationSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StateMachineCurrentStateAction.cs" />
@@ -79,6 +80,8 @@
     <Compile Include="StateMachineInstanceRepository.cs" />
     <Compile Include="StateMachineOptionsAction.cs" />
     <Compile Include="StateMachineRaiseEventAction.cs" />
+    <Compile Include="StateMachineRegistryExtension.cs" />
+    <Compile Include="StateMachineUrlPolicy.cs" />
     <Compile Include="TicketStateMachine.cs" />
   </ItemGroup>
   <ItemGroup>
