@@ -60,6 +60,17 @@
         }
     }
 
+    public class EventActionCall : ActionCall
+    {
+
+        public EventActionCall(string name, Type handlerType, MethodInfo method) : base(handlerType, method)
+        {
+            EventName = name;
+        }
+
+        public string EventName { get; private set; }
+    }
+
     public class StateMachineUrlPolicy : IUrlPolicy
     {
         public bool Matches(ActionCall call, IConfigurationObserver log)
