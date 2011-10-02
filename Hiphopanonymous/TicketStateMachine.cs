@@ -4,10 +4,11 @@
     using Automatonymous;
 
     public class TicketStateMachine :
-        StateMachine<Ticket>
+        AutomatonymousStateMachine<Ticket>
     {
         public TicketStateMachine()
         {
+            
             Event(() => Open);
             Event(() => Close);
 
@@ -15,6 +16,7 @@
             State(() => Closed);
             State(() => Stalled);
 
+            
             Initially(
                 When(Open)
                 .Then(ticket=>
@@ -26,10 +28,11 @@
 
 
 
-            Anytime(
+            DuringAny(
                 When(Close)
                 .TransitionTo(Closed));
         }
+
 
         public Event Open { get; set; }
         public Event Close { get; set; }

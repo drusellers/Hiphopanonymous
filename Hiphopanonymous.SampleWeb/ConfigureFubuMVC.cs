@@ -22,7 +22,7 @@ namespace Hiphopanonymous.SampleWeb
             // Match views to action methods by matching
             // on model type, view name, and namespace
             Views.TryToAttachWithDefaultConventions();
-
+            
             new StateMachineRegistryExtension().Configure(this);
         }
     }

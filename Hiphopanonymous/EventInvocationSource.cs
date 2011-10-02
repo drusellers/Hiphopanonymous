@@ -1,4 +1,7 @@
-﻿namespace Hiphopanonymous
+﻿using Automatonymous.Impl;
+using FubuCore;
+
+namespace Hiphopanonymous
 {
     using System;
     using System.Collections.Generic;
@@ -20,7 +23,6 @@
 
                 var t = typeof (StateMachineOptionsAction<>).MakeGenericType(sm);
                 var ta =  new ActionCall(t, t.GetMethod("Execute", BindingFlags.Public | BindingFlags.Instance));
-                //can I build the route here?
                 
                 yield return ta;
 
@@ -36,10 +38,20 @@
                     //between here and the event url generation
                     //so I used a custom ActionCall extension
                     var eventName = @event.Name;
-                    var et = typeof (StateMachineRaiseEventAction<,>).MakeGenericType(sm, @event.GetType());
-                    var call = new EventActionCall(eventName, et, et.GetMethod("Execute", BindingFlags.Public | BindingFlags.Instance));
+
+                    var tttt = typeof (StateMachineRaiseSimpleEventAction<>).MakeGenericType(sm);
+                    var eventType = @event.GetType();
+                    if (eventType != typeof (SimpleEvent))
+                    {
+                        tttt = typeof (StateMachineRaiseDataEventAction<,>).MakeGenericType(sm, eventType);
+                    }
+
+                    var call = new EventActionCall(eventName, tttt,
+                                                   tttt.GetMethod("Execute", BindingFlags.Public | BindingFlags.Instance));
                     yield return call;
                 }
+
+                yield break;
             }
         }
     }

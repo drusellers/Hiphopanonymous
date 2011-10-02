@@ -70,7 +70,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="EventActionCall.cs" />
     <Compile Include="EventInvocationSource.cs" />
@@ -79,16 +78,14 @@
     <Compile Include="StateMachineInstanceOptionsAction.cs" />
     <Compile Include="StateMachineInstanceRepository.cs" />
     <Compile Include="StateMachineOptionsAction.cs" />
-    <Compile Include="StateMachineRaiseEventAction.cs" />
+    <Compile Include="StateMachineRaiseDataEventAction.cs" />
+    <Compile Include="StateMachineRaiseSimpleEventAction.cs" />
     <Compile Include="StateMachineRegistryExtension.cs" />
     <Compile Include="StateMachineUrlPolicy.cs" />
     <Compile Include="TicketStateMachine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fubu-content\FubuMVC.GettingStarted.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,18 +3,18 @@ namespace Hiphopanonymous
     using System;
     using Automatonymous;
 
-    public class StateMachineRaiseEventAction<TStateMachine, TEvent>
+
+    public class StateMachineRaiseDataEventAction<TStateMachine, TData>
         where TStateMachine : StateMachine, new()
-        where TEvent : Event
     {
         private StateMachineInstanceRepository _repository;
 
-        public StateMachineRaiseEventAction(StateMachineInstanceRepository repository)
+        public StateMachineRaiseDataEventAction(StateMachineInstanceRepository repository)
         {
             _repository = repository;
         }
 
-        public EventResult Execute(RaiseEvent<TStateMachine, TEvent> input)
+        public EventResult Execute(RaiseDataEvent<TStateMachine, TData> input)
         {
             var smi = _repository.Find(input.Id);
             //get state machine
@@ -25,12 +25,13 @@ namespace Hiphopanonymous
     }
 
 
-    public class RaiseEvent<TStateMachine, TEvent>
+    public class RaiseDataEvent<TStateMachine, TData>
         where TStateMachine : StateMachine, new()
-        where TEvent : Event
     {
         public int Id { get; set; }
-        public string Payload { get; set; }
+        public string EventName { get; set; }
+
+        public TData Payload { get; set; }
     }
 
     public class EventResult

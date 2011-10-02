@@ -22,23 +22,24 @@ namespace Hiphopanonymous
         {
             var tm = new TStateMachine();
 
-            var evts = tm.Events.Select(e=>
-            {
-                var i = typeof (RaiseEvent<,>).MakeGenericType(typeof (TStateMachine), e.GetType());
-                return new NextEvent()
-                       {
-                           EventName = e,
-                           MediaType = "application/bullshit",
-                           Url = _urls.UrlFor(Activator.CreateInstance(i))
-                       };
-            });
+//            var evts = tm.Events.Select(e=>
+//            {
+//                //handle 
+//                
+//                var i = typeof (RaiseSimpleEvent<>).MakeGenericType(typeof (TStateMachine));
+//                return new NextEvent()
+//                       {
+//                           EventName = e,
+//                           MediaType = "application/bullshit",
+//                           Url = _urls.UrlFor(Activator.CreateInstance(i))
+//                       };
+//            });
 
             
             //how to get the url of each event
 
             return new OptionsResult()
                    {
-                       EventsAvailable = evts
                    };
         }
     }

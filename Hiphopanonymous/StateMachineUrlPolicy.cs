@@ -23,7 +23,7 @@ namespace Hiphopanonymous
 
             if(call.HandlerType.Name.Contains("Options"))
             {
-                route.ConstrainToHttpMethods("OPTIONS");
+                route.ConstrainToHttpMethods("GET");
 
                 if(call.HandlerType.Name.Contains("Instance"))
                 {
@@ -38,7 +38,7 @@ namespace Hiphopanonymous
             }
             
             //add event name
-            if(call.HandlerType.Closes(typeof(StateMachineRaiseEventAction<,>)))
+            if(call.HandlerType.Closes(typeof(StateMachineRaiseDataEventAction<,>)) || call.HandlerType.Closes(typeof(StateMachineRaiseSimpleEventAction<>)))
             {
                 //this is a fail, this is the type name - not the name of the event which would be the name
                 //of the property the type was derived from.
