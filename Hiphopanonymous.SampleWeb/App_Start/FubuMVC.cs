@@ -5,7 +5,7 @@ using Hiphopanonymous.SampleWeb.App_Start;
 using StructureMap;
 
 // You can remove the reference to WebActivator by calling the Start() method from your Global.asax Application_Start
-[assembly: WebActivator.PreApplicationStartMethod(typeof(AppStartFubuMVC), "Start", callAfterGlobalAppStart: true)]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(AppStartFubuMVC), "Start", Order=0)]
 
 namespace Hiphopanonymous.SampleWeb.App_Start
 {
@@ -32,7 +32,7 @@ namespace Hiphopanonymous.SampleWeb.App_Start
                 // that you can use the native registration API's for your
                 // IoC container for the rest of your application
                 .StructureMap(container)
-                .Bootstrap(RouteTable.Routes);
+                .Bootstrap();
         }
     }
 }
