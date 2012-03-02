@@ -5,7 +5,7 @@ namespace Hiphopanonymous.Actions
 {
     public class StateMachineCurrentStateAction<TStateMachine> where TStateMachine : StateMachine, new()
     {
-        private StateMachineInstanceRepository _repository;
+        private readonly StateMachineInstanceRepository _repository;
 
         public StateMachineCurrentStateAction(StateMachineInstanceRepository repository)
         {

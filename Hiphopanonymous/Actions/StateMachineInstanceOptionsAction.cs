@@ -4,17 +4,27 @@ using Automatonymous;
 
 namespace Hiphopanonymous.Actions
 {
-    public class StateMachineInstanceOptionsAction<TStateMachine, TStateMachineInstance>
+    public class StateMachineInstanceOptionsAction<TStateMachine>
         where TStateMachine : StateMachine, new()
-        where TStateMachineInstance : State, new()
     {
+        private readonly StateMachineInstanceRepository _repository;
+
+        public StateMachineInstanceOptionsAction(StateMachineInstanceRepository repository)
+        {
+            _repository = repository;
+        }
+
         [JsonEndpoint]
         public InstanceOptionsResult Execute(InstanceOptionsRequest<TStateMachine> request)
         {
             var tm = new TStateMachine();
-            var tmi = new TStateMachineInstance();
+            var tmi = _repository.Find(request.Id);
+
+            //get the state machine instance
+
+            var state = tmi.CurrentState;
             
-            var evts = tm.NextEvents(tmi);
+            var evts = tm.NextEvents(state);
 
             //how to get the url of each event
 

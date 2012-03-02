@@ -27,7 +27,8 @@ namespace Hiphopanonymous.Config
                 yield return ta;
 
                 //need to fix this
-                var tt = typeof(StateMachineInstanceOptionsAction<,>).MakeGenericType(sm,null);
+                //current state?
+                var tt = typeof(StateMachineInstanceOptionsAction<>).MakeGenericType(sm);
                 yield return new ActionCall(tt, tt.GetMethod("Execute", BindingFlags.Public | BindingFlags.Instance));
 
                 var ttt = typeof(StateMachineCurrentStateAction<>).MakeGenericType(sm);

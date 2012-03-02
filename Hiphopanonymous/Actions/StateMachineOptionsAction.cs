@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Automatonymous;
 using FubuMVC.Core;
 using FubuMVC.Core.Urls;
@@ -20,24 +21,23 @@ namespace Hiphopanonymous.Actions
         {
             var tm = new TStateMachine();
 
-//            var evts = tm.Events.Select(e=>
-//            {
-//                //handle 
-//                
-//                var i = typeof (RaiseSimpleEvent<>).MakeGenericType(typeof (TStateMachine));
-//                return new NextEvent()
-//                       {
-//                           EventName = e,
-//                           MediaType = "application/bullshit",
-//                           Url = _urls.UrlFor(Activator.CreateInstance(i))
-//                       };
-//            });
+            var evts = tm.Events.Select(e=>
+            {
+                //handle 
+                var i = typeof (RaiseSimpleEvent<TStateMachine>);
+                return new NextEvent()
+                       {
+                           EventName = e,
+                           MediaType = "application/bullshit",
+                           //Find the Url
+                           //Url = _urls.UrlFor(Activator.CreateInstance(i))
+                       };
+            });
 
             
-            //how to get the url of each event
-
-            return new OptionsResult()
+            return new OptionsResult
                    {
+                       EventsAvailable = evts
                    };
         }
     }
