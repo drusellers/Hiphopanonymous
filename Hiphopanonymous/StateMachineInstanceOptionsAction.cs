@@ -4,22 +4,23 @@ namespace Hiphopanonymous
     using FubuMVC.Core;
     using Automatonymous;
 
-    public class StateMachineInstanceOptionsAction<TStateMachine> where TStateMachine : StateMachine, new()
+    public class StateMachineInstanceOptionsAction<TStateMachine, TStateMachineInstance>
+        where TStateMachine : StateMachine, new()
+        where TStateMachineInstance : State, new()
     {
         [JsonEndpoint]
         public InstanceOptionsResult Execute(InstanceOptionsRequest<TStateMachine> request)
         {
-            var tm = new TicketStateMachine();
-            var tmi = new Ticket();
-            tm.RaiseEvent(tmi, tm.Open);
-
+            var tm = new TStateMachine();
+            var tmi = new TStateMachineInstance();
+            
             var evts = tm.NextEvents(tmi);
 
             //how to get the url of each event
 
             return new InstanceOptionsResult()
                    {
-                       CurrentState = tmi.CurrentState,
+                       CurrentState = null, //tmi.CurrentState,
                        NextEventsAvailable = evts
                    };
         }

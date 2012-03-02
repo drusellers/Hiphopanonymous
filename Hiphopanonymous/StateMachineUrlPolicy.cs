@@ -23,7 +23,7 @@ namespace Hiphopanonymous
 
             if(call.HandlerType.Name.Contains("Options"))
             {
-                route.ConstrainToHttpMethods("GET");
+                route.ConstrainToHttpMethods("OPTION");
 
                 if(call.HandlerType.Name.Contains("Instance"))
                 {

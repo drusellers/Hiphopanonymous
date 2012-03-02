@@ -15,8 +15,8 @@ namespace Hiphopanonymous
         public IEnumerable<ActionCall> FindActions(TypePool types)
         {
 
-            //var tpes = types.TypesMatching(t => t.Closes(typeof (StateMachine<>)));
-            foreach(var sm in new List<Type>{typeof(TicketStateMachine)})
+            var stateMachines = types.TypesMatching(t => t.Closes(typeof (StateMachine<>)));
+            foreach(var sm in stateMachines)
             {
                 //TODO: Where can I load things into the container - using ObjDef?
                 var machine = (StateMachine)Activator.CreateInstance(sm);
@@ -26,7 +26,8 @@ namespace Hiphopanonymous
                 
                 yield return ta;
 
-                var tt = typeof(StateMachineInstanceOptionsAction<>).MakeGenericType(sm);
+                //need to fix this
+                var tt = typeof(StateMachineInstanceOptionsAction<,>).MakeGenericType(sm,null);
                 yield return new ActionCall(tt, tt.GetMethod("Execute", BindingFlags.Public | BindingFlags.Instance));
 
                 var ttt = typeof(StateMachineCurrentStateAction<>).MakeGenericType(sm);

@@ -80,7 +80,6 @@
     <Compile Include="StateMachineRaiseSimpleEventAction.cs" />
     <Compile Include="StateMachineRegistryExtension.cs" />
     <Compile Include="StateMachineUrlPolicy.cs" />
-    <Compile Include="TicketStateMachine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fubu-content\fubumvc-diagnostics.zip" />
