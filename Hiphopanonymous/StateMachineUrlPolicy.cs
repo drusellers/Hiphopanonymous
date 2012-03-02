@@ -27,7 +27,7 @@ namespace Hiphopanonymous
 
                 if(call.HandlerType.Name.Contains("Instance"))
                 {
-                    route.Append("{id}");
+                    route.Append("{id}"); // how do I bind this to the input? 
                 }
             }
             

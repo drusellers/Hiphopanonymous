@@ -1,10 +1,12 @@
+using System;
 using System.Linq;
 using Automatonymous;
+using FubuMVC.Core;
 
 namespace Hiphopanonymous
 {
     public class StateMachineRaiseSimpleEventAction<TStateMachine>
-        where TStateMachine : StateMachine, new()
+        where TStateMachine : StateMachine<StateMachineInstance>, new()
     {
         
         private StateMachineInstanceRepository _repository;
@@ -17,17 +19,27 @@ namespace Hiphopanonymous
         public EventResult Execute(RaiseSimpleEvent<TStateMachine> input)
         {
             var smi = _repository.Find(input.Id);
-            
-            //get state machine
-            //build event
-            //raise event
+            var sm = Activator.CreateInstance<TStateMachine>();
+
+            try
+            {
+                sm.RaiseEvent(smi, m => m.Events.Single(e => e.Name == input.EventName));
+            }
+            catch (Exception)
+            {
+                //return error code whatever
+                throw;
+            }
+
             return new EventResult();
         }
     }
 
     public class RaiseSimpleEvent<TStateMachine>
     {
+        [RouteInput]
         public int Id { get; set; }
+        [RouteInput]
         public string EventName { get; set; }
     }
 }

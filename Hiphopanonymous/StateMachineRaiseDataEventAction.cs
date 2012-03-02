@@ -1,3 +1,6 @@
+using System.Linq;
+using FubuMVC.Core;
+
 namespace Hiphopanonymous
 {
     using System;
@@ -5,7 +8,8 @@ namespace Hiphopanonymous
 
 
     public class StateMachineRaiseDataEventAction<TStateMachine, TData>
-        where TStateMachine : StateMachine, new()
+        where TStateMachine : StateMachine<StateMachineInstance>, new()
+        where TData :class
     {
         private StateMachineInstanceRepository _repository;
 
@@ -17,9 +21,18 @@ namespace Hiphopanonymous
         public EventResult Execute(RaiseDataEvent<TStateMachine, TData> input)
         {
             var smi = _repository.Find(input.Id);
-            //get state machine
-            //build event
-            //raise event
+            var sm = Activator.CreateInstance<TStateMachine>();
+
+            try
+            {
+                sm.RaiseEvent(smi, m=> (Event<TData>)m.Events.Single(e=>e.Name==input.EventName), input.Payload);
+            }
+            catch (Exception)
+            {
+                //return error code whatever
+                throw;
+            }
+            
             return new EventResult();
         }
     }
@@ -27,8 +40,12 @@ namespace Hiphopanonymous
 
     public class RaiseDataEvent<TStateMachine, TData>
         where TStateMachine : StateMachine, new()
+        where TData : class
     {
+        [RouteInput]
         public int Id { get; set; }
+
+        [RouteInput]
         public string EventName { get; set; }
 
         public TData Payload { get; set; }
