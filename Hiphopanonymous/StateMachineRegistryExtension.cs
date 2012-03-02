@@ -1,4 +1,5 @@
 using FubuMVC.Core;
+using Hiphopanonymous.Config;
 
 namespace Hiphopanonymous
 {

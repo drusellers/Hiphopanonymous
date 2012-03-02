@@ -68,18 +68,17 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigureFubuMVC.cs" />
-    <Compile Include="EventActionCall.cs" />
-    <Compile Include="EventInvocationSource.cs" />
+    <Compile Include="Actions\EventActionCall.cs" />
+    <Compile Include="Config\EventInvocationSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StateMachineCurrentStateAction.cs" />
-    <Compile Include="StateMachineInstanceOptionsAction.cs" />
+    <Compile Include="Actions\StateMachineCurrentStateAction.cs" />
+    <Compile Include="Actions\StateMachineInstanceOptionsAction.cs" />
     <Compile Include="StateMachineInstanceRepository.cs" />
-    <Compile Include="StateMachineOptionsAction.cs" />
-    <Compile Include="StateMachineRaiseDataEventAction.cs" />
-    <Compile Include="StateMachineRaiseSimpleEventAction.cs" />
+    <Compile Include="Actions\StateMachineOptionsAction.cs" />
+    <Compile Include="Actions\StateMachineRaiseDataEventAction.cs" />
+    <Compile Include="Actions\StateMachineRaiseSimpleEventAction.cs" />
     <Compile Include="StateMachineRegistryExtension.cs" />
-    <Compile Include="StateMachineUrlPolicy.cs" />
+    <Compile Include="Config\StateMachineUrlPolicy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fubu-content\fubumvc-diagnostics.zip" />
